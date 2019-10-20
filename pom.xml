@@ -73,6 +73,10 @@
             <id>sk89q-repo</id>
             <url>https://maven.sk89q.com/repo/</url>
         </repository>
+        <repository>
+            <id>factions-repo</id>
+            <url>http://ci.ender.zone/plugin/repository/everything/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -93,5 +97,12 @@
             <artifactId>GriefPrevention</artifactId>
             <version>16.12.alpha</version>
             <scope>provided</scope>
-        </dependency>    </dependencies>
+        </dependency>
+        <dependency>
+            <groupId>com.massivecraft</groupId>
+            <artifactId>Factions</artifactId>
+            <version>1.6.9.5-U0.2.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>

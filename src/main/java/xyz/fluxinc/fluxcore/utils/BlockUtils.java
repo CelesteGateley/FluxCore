@@ -106,7 +106,7 @@ public class BlockUtils {
     }
 
     /**
-     * Get a list of blocks of the same type in a given direction
+     * Get a list of blocks of the same type in a given direction. Always returns the initial block as the first item
      * @param block The starting block
      * @param direction The direction to head. Use constants to specify
      * @return The list of blocks

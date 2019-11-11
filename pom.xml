@@ -6,7 +6,7 @@
 
     <groupId>xyz.fluxinc</groupId>
     <artifactId>FluxCore</artifactId>
-    <version>1.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <name>FluxCore</name>
@@ -19,7 +19,7 @@
     <url>https://fluxinc/xyz</url>
 
     <build>
-        <defaultGoal>clean package</defaultGoal>
+        <defaultGoal>clean package javadoc:jar</defaultGoal>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -29,6 +29,19 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

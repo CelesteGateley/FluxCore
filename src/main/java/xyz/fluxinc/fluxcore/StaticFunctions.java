@@ -3,13 +3,14 @@ package xyz.fluxinc.fluxcore;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+// TODO: Refactor into separate classes
 
 public class StaticFunctions {
 
@@ -33,7 +34,7 @@ public class StaticFunctions {
         return lore.replaceAll(ChatColor.COLOR_CHAR + "", "");
     }
 
-    private static List<Block> getVMBlockList(Player player, Block startingBlock, int maxBlocks) {
+    private static List<Block> getVMBlockList(Block startingBlock, int maxBlocks) {
         List<Block> blocks = new ArrayList<>();
         Material template = startingBlock.getType();
         List<Block> toVisit = new ArrayList<>();

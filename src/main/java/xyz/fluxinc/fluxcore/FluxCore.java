@@ -29,5 +29,9 @@ public final class FluxCore extends JavaPlugin {
         getServer().getPluginManager().disablePlugin(this);
     }
 
+    /**
+     * Gives you a convenient instance of BlockAccessController, with all possible protection plugins registered
+     * @return Current Block Access Controller
+     */
     public BlockAccessController getBlockAccessController() { return blockAccessController; }
 }

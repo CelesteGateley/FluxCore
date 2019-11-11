@@ -51,17 +51,12 @@ public class BlockUtils {
         Material template = startingBlock.getType();
         List<Block> toVisit = new ArrayList<>();
         toVisit.add(startingBlock);
-        while (!toVisit.isEmpty() && (blocks.size() < maxBlocks || maxBlocks == -1)) {
+          do {
             List<Block> processQueue = new ArrayList<>(toVisit);
             blocks.addAll(toVisit);
             toVisit = new ArrayList<>();
             for (Block block : processQueue) {
-                List<Block> blockFaces;
-                if (includeCorners) {
-                    blockFaces = getBlockCube(block, 1);
-                } else {
-                     blockFaces = getBlockFaces(block);
-                }
+                List<Block> blockFaces = includeCorners ? getBlockCube(block, 1) : getBlockFaces(block);
                 for (Block blockFace : blockFaces) {
                     if (block.getType() == template && !toVisit.contains(blockFace) && !blocks.contains(blockFace)) {
                         toVisit.add(block);
@@ -70,7 +65,7 @@ public class BlockUtils {
                 }
                 if (blocks.size() >= maxBlocks) { break; }
             }
-        }
+        } while (!toVisit.isEmpty() && (blocks.size() < maxBlocks || maxBlocks == -1));
         return blocks;
     }
 
@@ -114,7 +109,7 @@ public class BlockUtils {
      * Get a list of blocks of the same type in a given direction
      * @param block The starting block
      * @param direction The direction to head. Use constants to specify
-     * @return
+     * @return The list of blocks
      */
     public static List<Block> getDirectionalBlockList(Block block, int direction) {
         List<Block> blocks = new ArrayList<>();

@@ -2,6 +2,8 @@ package xyz.fluxinc.fluxcore.utils;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import xyz.fluxinc.fluxcore.enums.BlockFace;
+import xyz.fluxinc.fluxcore.enums.Direction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,25 +11,6 @@ import java.util.List;
 import static java.lang.Math.abs;
 
 public class BlockUtils {
-
-    /*
-        EAST/WEST = +/- X
-        TOP/BOTTOM = +/- Y
-        NORTH/SOUTH = +/- Z
-     */
-
-    public static final int TOP_FACE = 1;
-    public static final int UP_DIRECTION = 1;
-    public static final int NORTH_FACE = 2;
-    public static final int NORTH_DIRECTION = 2;
-    public static final int EAST_FACE = 3;
-    public static final int EAST_DIRECTION = 3;
-    public static final int SOUTH_FACE = 4;
-    public static final int SOUTH_DIRECTION = 4;
-    public static final int WEST_FACE = 5;
-    public static final int WEST_DIRECTION = 5;
-    public static final int BOTTOM_FACE = 6;
-    public static final int DOWN_DIRECTION = 6;
 
     /**
      * Gets a list of connected blocks for the same type.
@@ -111,12 +94,12 @@ public class BlockUtils {
      * @param direction The direction to head. Use constants to specify
      * @return The list of blocks
      */
-    public static List<Block> getDirectionalBlockList(Block block, int direction) {
+    public static List<Block> getDirectionalBlockList(Block block, Direction direction) {
         List<Block> blocks = new ArrayList<>();
         Block nextBlock = block;
         do {
             blocks.add(nextBlock);
-            Block newBlock = getBlockFace(block, direction);
+            Block newBlock = getBlockFace(block, Direction.getBlockFace(direction));
             nextBlock = newBlock != null && newBlock.getType() == block.getType() ? newBlock : null;
         } while(nextBlock != null);
         return blocks;
@@ -126,22 +109,22 @@ public class BlockUtils {
     /**
      * Get a block at a specific face
      * @param block The block to check
-     * @param face The specific face you wish to get. Use constants to specify
+     * @param face The specific face you wish to get.
      * @return The block at that face
      */
-    public static Block getBlockFace(Block block, int face) {
+    public static Block getBlockFace(Block block, BlockFace face) {
         switch (face) {
-            case 1:
+            case TOP:
                 return block.getWorld().getBlockAt(block.getX(), block.getY() + 1, block.getZ());
-            case 2:
+            case NORTH:
                 return block.getWorld().getBlockAt(block.getX(), block.getY(), block.getZ() + 1);
-            case 3:
+            case EAST:
                 return block.getWorld().getBlockAt(block.getX() + 1, block.getY(), block.getZ());
-            case 4:
+            case SOUTH:
                 return block.getWorld().getBlockAt(block.getX(), block.getY(), block.getZ() - 1);
-            case 5:
+            case WEST:
                 return block.getWorld().getBlockAt(block.getX() - 1, block.getY(), block.getZ());
-            case 6:
+            case BOTTOM:
                 return block.getWorld().getBlockAt(block.getX(), block.getY() - 1, block.getZ());
             default:
                 return null;

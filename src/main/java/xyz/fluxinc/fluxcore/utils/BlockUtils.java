@@ -2,6 +2,7 @@ package xyz.fluxinc.fluxcore.utils;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.inventory.ItemStack;
 import xyz.fluxinc.fluxcore.enums.BlockFace;
 import xyz.fluxinc.fluxcore.enums.Direction;
 
@@ -129,5 +130,16 @@ public class BlockUtils {
             default:
                 return null;
         }
+    }
+
+    /**
+     * A hack method to check if a block can be broken by a specific tool.
+     * Works by checking if it drops anything when broken by the tool
+     * @param block The block to test
+     * @param tool The tool to test
+     * @return Whether the block can be broken or not
+     */
+    public static boolean canBreak(Block block, ItemStack tool) {
+        return !block.getDrops(tool).isEmpty();
     }
 }

@@ -43,7 +43,7 @@ public class BlockUtils {
                 List<Block> blockFaces = includeCorners ? getBlockCube(block, 1) : getBlockFaces(block);
                 for (Block blockFace : blockFaces) {
                     if (block.getType() == template && !toVisit.contains(blockFace) && !blocks.contains(blockFace)) {
-                        toVisit.add(block);
+                        toVisit.add(blockFace);
                     }
                     if (blocks.size() >= maxBlocks) { break; }
                 }

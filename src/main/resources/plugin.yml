@@ -1,5 +1,5 @@
 name: FluxCore
-version: ${project.version}
+version: ${full.project.version}
 main: xyz.fluxinc.fluxcore.FluxCore
 api-version: 1.13
 prefix: FluxCore

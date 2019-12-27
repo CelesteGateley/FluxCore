@@ -1,6 +1,7 @@
 package xyz.fluxinc.fluxcore.security;
 
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
+import com.sk89q.worldedit.world.World;
 import com.sk89q.worldguard.LocalPlayer;
 import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
@@ -8,6 +9,7 @@ import com.sk89q.worldguard.protection.flags.Flags;
 import com.sk89q.worldguard.protection.regions.RegionQuery;
 import me.ryanhamshire.GriefPrevention.Claim;
 import me.ryanhamshire.GriefPrevention.GriefPrevention;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -75,11 +77,13 @@ public class BlockAccessController {
     private boolean worldGuardBlockQuery(Player p, Location loc, boolean breakBlock) {
         WorldGuardDataInstance wgdInst = new WorldGuardDataInstance(p, loc);
         RegionQuery rQuery = wgdInst.getRegionQuery();
+        com.sk89q.worldedit.util.Location location = BukkitAdapter.adapt(loc);
+        World world = BukkitAdapter.adapt(p.getWorld());
 
-        boolean bypass = WorldGuard.getInstance().getPlatform().getSessionManager().hasBypass(wgdInst.getPlayer(), wgdInst.getPlayer().getWorld());
-        boolean query = rQuery.testState(wgdInst.getLocation(), wgdInst.getPlayer(), Flags.BUILD);
-        if (!query && breakBlock) { query = rQuery.testState(wgdInst.getLocation(), wgdInst.getPlayer(), Flags.BLOCK_BREAK); }
-        if (!query && !breakBlock) { query = rQuery.testState(wgdInst.getLocation(), wgdInst.getPlayer(), Flags.BLOCK_PLACE); }
+        boolean bypass = WorldGuard.getInstance().getPlatform().getSessionManager().hasBypass(wgdInst.getPlayer(), world);
+        boolean query = rQuery.testState(location, wgdInst.getPlayer(), Flags.BUILD);
+        if (!query && breakBlock) { query = rQuery.testState(location, wgdInst.getPlayer(), Flags.BLOCK_BREAK); }
+        if (!query && !breakBlock) { query = rQuery.testState(location, wgdInst.getPlayer(), Flags.BLOCK_PLACE); }
 
         return bypass || query;
     }

@@ -8,20 +8,47 @@ import java.util.Map;
 
 public class LanguageManager<Plugin extends JavaPlugin> extends ConfigurationManager<Plugin> {
 
+    /**
+     * A class used specifically for managing language files
+     * @param plugin
+     * @param langFile
+     */
     public LanguageManager(Plugin plugin, String langFile) { super(plugin, langFile); }
 
-    public String generateMessage(String langKey, Map<String, String> variables) {
+    /**
+     * Generate a message to be output into chat
+     * @param key The language key
+     * @param variables The variables to be replaced
+     * @return The formatted message
+     */
+    public String generateMessage(String key, Map<String, String> variables) {
         String prefix = configuration.getString("prefix");
-        String msg = configuration.getString(langKey);
-        if (prefix == null || msg == null) { instance.getLogger().severe("Invalid Lang File, missing elements prefix or " + langKey); return ""; }
+        String msg = configuration.getString(key);
+        if (prefix == null || msg == null) { instance.getLogger().severe("Invalid Lang File, missing elements prefix or " + key); return ""; }
         for (Map.Entry<String,String> pair : variables.entrySet()) { msg = msg.replaceAll("%" + pair.getKey() + "%", pair.getValue()); }
         return ChatColor.translateAlternateColorCodes('&', prefix + msg);
     }
 
-    public String generateMessage(String langKey) {
+    /**
+     * Generate a message to be output into chat
+     * @param key The language key
+     * @return The formatted message
+     */
+    public String generateMessage(String key) {
         String prefix = configuration.getString("prefix");
-        String msg = configuration.getString(langKey);
-        if (prefix == null || msg == null) { instance.getLogger().severe("Invalid Lang File, missing elements prefix or " + langKey); return ""; }
+        String msg = configuration.getString(key);
+        if (prefix == null || msg == null) { instance.getLogger().severe("Invalid Lang File, missing elements prefix or " + key); return ""; }
         return ChatColor.translateAlternateColorCodes('&', prefix + " " + msg);
+    }
+
+    /**
+     * Returns a raw config key with colors, but no prefix
+     * @param key The key to return
+     * @return The semi-formatted string
+     */
+    public String getKey(String key) {
+        String msg = configuration.getString(key);
+        if (msg == null) { instance.getLogger().severe("Invalid Lang File, missing elements prefix or " + key); return ""; }
+        return ChatColor.translateAlternateColorCodes('&', msg);
     }
 }

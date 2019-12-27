@@ -142,4 +142,13 @@ public class BlockUtils {
     public static boolean canBreak(Block block, ItemStack tool) {
         return !block.getDrops(tool).isEmpty();
     }
+
+    public static List<Material> convertStringToMaterial(List<String> blocks) {
+        List<Material> materials = new ArrayList<>();
+        for (String str : blocks) {
+            Material mat = Material.getMaterial(str);
+            if (mat != null) { materials.add(mat); }
+        }
+        return materials;
+    }
 }

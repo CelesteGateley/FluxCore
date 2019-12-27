@@ -11,7 +11,6 @@ import xyz.fluxinc.fluxcore.security.CoreProtectLogger;
 public final class FluxCore extends JavaPlugin {
 
     private BlockAccessController blockAccessController;
-    private CoreProtectLogger coreProtectLogger;
 
     @Override
     public void onEnable() {
@@ -23,11 +22,10 @@ public final class FluxCore extends JavaPlugin {
         try { blockAccessController.registerWorldGuard(WorldGuardPlugin.inst()); } catch (NoClassDefFoundError ignored) {}
         try { blockAccessController.registerGriefPrevention(GriefPrevention.instance); } catch (NoClassDefFoundError ignored) {}
 
-        coreProtectLogger = new CoreProtectLogger(getServer().getPluginManager().getPlugin("CoreProtect"));
     }
 
     @Override
-    public void onDisable() { blockAccessController = null; coreProtectLogger = null; }
+    public void onDisable() { blockAccessController = null; }
 
     private void severeErrorHandler(Exception e) {
         e.printStackTrace();
@@ -40,9 +38,4 @@ public final class FluxCore extends JavaPlugin {
      */
     public BlockAccessController getBlockAccessController() { return blockAccessController; }
 
-    /**
-     * Gives you a convenient instance of CoreProtectLogger, pre-initialized
-     * @return The instance of CoreProtectLogger
-     */
-    public CoreProtectLogger getCoreProtectLogger() { return coreProtectLogger; }
 }

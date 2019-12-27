@@ -6,7 +6,7 @@
 
     <groupId>xyz.fluxinc</groupId>
     <artifactId>FluxCore</artifactId>
-    <version>1.0.5</version>
+    <version>1.0.6</version>
     <packaging>jar</packaging>
 
     <name>FluxCore</name>
@@ -14,6 +14,8 @@
     <description>A core plugin for all plugins developed for/by FluxInc</description>
     <properties>
         <java.version>1.8</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!--suppress UnresolvedMavenProperty -->
         <full.project.version>${project.version}-${git.commit.id.abbrev}</full.project.version>
@@ -36,6 +38,10 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.1.1</version>
+                <configuration>
+                    <javadocVersion>1.8</javadocVersion>
+                    <javadocExecutable>C:\Program Files\Java\jdk1.8.0_231\bin\javadoc.exe</javadocExecutable>
+                </configuration>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -104,7 +110,10 @@
             <id>sonatype</id>
             <url>https://oss.sonatype.org/content/groups/public/</url>
         </repository>
-
+        <repository>
+            <id>coreprotect-repo</id>
+            <url>http://maven.playpro.com</url>
+        </repository>
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
@@ -142,6 +151,12 @@
             <groupId>com.massivecraft</groupId>
             <artifactId>Factions</artifactId>
             <version>1.6.9.5-U0.2.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.coreprotect</groupId>
+            <artifactId>coreprotect</artifactId>
+            <version>2.16.3</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

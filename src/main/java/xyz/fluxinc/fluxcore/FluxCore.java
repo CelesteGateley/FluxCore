@@ -2,13 +2,16 @@ package xyz.fluxinc.fluxcore;
 
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import me.ryanhamshire.GriefPrevention.GriefPrevention;
+import net.coreprotect.CoreProtectAPI;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.fluxinc.fluxcore.configuration.LanguageManager;
 import xyz.fluxinc.fluxcore.security.BlockAccessController;
+import xyz.fluxinc.fluxcore.security.CoreProtectLogger;
 
 public final class FluxCore extends JavaPlugin {
 
     private BlockAccessController blockAccessController;
+    private CoreProtectLogger coreProtectLogger;
 
     @Override
     public void onEnable() {
@@ -19,10 +22,12 @@ public final class FluxCore extends JavaPlugin {
         blockAccessController = new BlockAccessController();
         try { blockAccessController.registerWorldGuard(WorldGuardPlugin.inst()); } catch (NoClassDefFoundError ignored) {}
         try { blockAccessController.registerGriefPrevention(GriefPrevention.instance); } catch (NoClassDefFoundError ignored) {}
+
+        coreProtectLogger = new CoreProtectLogger(getServer().getPluginManager().getPlugin("CoreProtect"));
     }
 
     @Override
-    public void onDisable() { blockAccessController = null; }
+    public void onDisable() { blockAccessController = null; coreProtectLogger = null; }
 
     private void severeErrorHandler(Exception e) {
         e.printStackTrace();
@@ -34,4 +39,10 @@ public final class FluxCore extends JavaPlugin {
      * @return Current Block Access Controller
      */
     public BlockAccessController getBlockAccessController() { return blockAccessController; }
+
+    /**
+     * Gives you a convenient instance of CoreProtectLogger, pre-initialized
+     * @return The instance of CoreProtectLogger
+     */
+    public CoreProtectLogger getCoreProtectLogger() { return coreProtectLogger; }
 }

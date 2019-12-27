@@ -10,8 +10,8 @@ public class LanguageManager<Plugin extends JavaPlugin> extends ConfigurationMan
 
     /**
      * A class used specifically for managing language files
-     * @param plugin
-     * @param langFile
+     * @param plugin The plugin instance using the language file
+     * @param langFile The name of the language file
      */
     public LanguageManager(Plugin plugin, String langFile) { super(plugin, langFile); }
 

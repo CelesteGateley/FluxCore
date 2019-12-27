@@ -40,7 +40,7 @@ public class CoreProtectLogger {
 
         if (plugin instanceof CoreProtect) {
             CoreProtectAPI api = ((CoreProtect) plugin).getAPI();
-            if (api.isEnabled() && api.APIVersion() > 6) {
+            if (api.isEnabled() && api.APIVersion() >= 6) {
                 return api;
             }
         }

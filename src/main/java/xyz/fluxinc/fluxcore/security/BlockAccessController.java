@@ -77,15 +77,13 @@ public class BlockAccessController {
     private boolean worldGuardBlockQuery(Player p, Location loc, boolean breakBlock) {
         WorldGuardDataInstance wgdInst = new WorldGuardDataInstance(p, loc);
         RegionQuery rQuery = wgdInst.getRegionQuery();
-        com.sk89q.worldedit.util.Location location = BukkitAdapter.adapt(loc);
-        World world = BukkitAdapter.adapt(p.getWorld());
 
-        boolean bypass = WorldGuard.getInstance().getPlatform().getSessionManager().hasBypass(wgdInst.getPlayer(), world);
-        boolean query = rQuery.testState(location, wgdInst.getPlayer(), Flags.BUILD);
-        if (!query && breakBlock) { query = rQuery.testState(location, wgdInst.getPlayer(), Flags.BLOCK_BREAK); }
-        if (!query && !breakBlock) { query = rQuery.testState(location, wgdInst.getPlayer(), Flags.BLOCK_PLACE); }
-
-        return bypass || query;
+        boolean bypass = WorldGuard.getInstance().getPlatform().getSessionManager().hasBypass(wgdInst.getPlayer(), wgdInst.getPlayer().getWorld());
+        if (bypass) { return true; }
+        boolean query;
+        if (breakBlock) { query = rQuery.testBuild(wgdInst.getLocation(), wgdInst.getPlayer(), Flags.BLOCK_BREAK); }
+        else { query = rQuery.testBuild(wgdInst.getLocation(), wgdInst.getPlayer(), Flags.BLOCK_PLACE); }
+        return query;
     }
 
     private boolean worldGuardAccessQuery(Player p, Location loc) {
@@ -116,8 +114,8 @@ public class BlockAccessController {
         com.sk89q.worldedit.util.Location worldGuardLocation;
 
         WorldGuardDataInstance(Player player, Location location) {
-            LocalPlayer lPlayer = worldGuardCompat.wrapPlayer(player);
-            com.sk89q.worldedit.util.Location wLoc = BukkitAdapter.adapt(location);
+            this.worldGuardPlayer = worldGuardCompat.wrapPlayer(player);
+            this.worldGuardLocation = BukkitAdapter.adapt(location);
         }
 
         LocalPlayer getPlayer() { return worldGuardPlayer; }

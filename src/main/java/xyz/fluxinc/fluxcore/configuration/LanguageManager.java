@@ -26,7 +26,7 @@ public class LanguageManager<Plugin extends JavaPlugin> extends ConfigurationMan
         String msg = configuration.getString(key);
         if (prefix == null || msg == null) { instance.getLogger().severe("Invalid Lang File, missing elements prefix or " + key); return ""; }
         for (Map.Entry<String,String> pair : variables.entrySet()) { msg = msg.replaceAll("%" + pair.getKey() + "%", pair.getValue()); }
-        return ChatColor.translateAlternateColorCodes('&', prefix + msg);
+        return ChatColor.translateAlternateColorCodes('&', prefix + " " + msg);
     }
 
     /**

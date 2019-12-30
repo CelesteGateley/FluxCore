@@ -21,8 +21,11 @@ public class ConfigurationManager<Plugin extends JavaPlugin> {
      */
     public ConfigurationManager(Plugin instance, String configuration) {
         YamlConfiguration config = new YamlConfiguration();
-        instance.saveResource(configuration, false);
-        try { config.load(new File(instance.getDataFolder(), configuration)); }
+        File configFile = new File(instance.getDataFolder(), configuration);
+        if (!configFile.exists()) {
+            instance.saveResource(configuration, false);
+        }
+        try { config.load(configFile); }
         catch (InvalidConfigurationException | IOException e) { e.printStackTrace(); Bukkit.getPluginManager().disablePlugin(instance); }
         this.configuration = config;
         this.instance = instance;

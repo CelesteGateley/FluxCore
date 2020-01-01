@@ -35,7 +35,7 @@ public class BlockUtils {
         Material template = startingBlock.getType();
         List<Block> toVisit = new ArrayList<>();
         toVisit.add(startingBlock);
-          do {
+        do {
             List<Block> processQueue = new ArrayList<>(toVisit);
             blocks.addAll(toVisit);
             toVisit = new ArrayList<>();

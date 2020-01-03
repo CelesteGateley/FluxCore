@@ -1,10 +1,12 @@
 package xyz.fluxinc.fluxcore.structure;
 
+/*
+    Code based on https://github.com/zhero42/ModularChests
+ */
+
 import org.bukkit.Location;
 
 public class CoordinatePair {
-
-
 
     private Location start;
     private Location end;

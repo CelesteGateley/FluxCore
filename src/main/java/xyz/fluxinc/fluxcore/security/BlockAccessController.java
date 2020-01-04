@@ -80,10 +80,8 @@ public class BlockAccessController {
 
         boolean bypass = WorldGuard.getInstance().getPlatform().getSessionManager().hasBypass(wgdInst.getPlayer(), wgdInst.getPlayer().getWorld());
         if (bypass) { return true; }
-        boolean query;
-        if (breakBlock) { query = rQuery.testBuild(wgdInst.getLocation(), wgdInst.getPlayer(), Flags.BLOCK_BREAK); }
-        else { query = rQuery.testBuild(wgdInst.getLocation(), wgdInst.getPlayer(), Flags.BLOCK_PLACE); }
-        return query;
+        if (breakBlock) { return rQuery.testBuild(wgdInst.getLocation(), wgdInst.getPlayer(), Flags.BLOCK_BREAK); }
+        else { return rQuery.testBuild(wgdInst.getLocation(), wgdInst.getPlayer(), Flags.BLOCK_PLACE); }
     }
 
     private boolean worldGuardAccessQuery(Player p, Location loc) {
@@ -91,8 +89,8 @@ public class BlockAccessController {
         RegionQuery rQuery = wgdInst.getRegionQuery();
 
         boolean bypass = WorldGuard.getInstance().getPlatform().getSessionManager().hasBypass(wgdInst.getPlayer(), wgdInst.getPlayer().getWorld());
-        boolean query = rQuery.testState(wgdInst.getLocation(), wgdInst.getPlayer(), Flags.USE);
-        return bypass || query;
+        if (bypass) { return true; }
+        return rQuery.testState(wgdInst.getLocation(), wgdInst.getPlayer(), Flags.USE);
     }
 
     private boolean griefPreventionBuildQuery(Player p, Location loc) {

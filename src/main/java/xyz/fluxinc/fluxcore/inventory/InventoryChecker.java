@@ -13,11 +13,20 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
+/**
+ * A class to constantly check a players inventory for an item, and execute a task if it is or isn't found
+ * @author CelesteMagisteel
+ */
 public class InventoryChecker implements Listener {
 
     private JavaPlugin instance;
     private CheckExecutor executor;
 
+    /**
+     * Initialises the class to perform the checks
+     * @param instance The current plugin the task is running for
+     * @param executor The executor containing the logic
+     */
     public InventoryChecker(JavaPlugin instance, CheckExecutor executor) {
         this.instance = instance;
         this.executor = executor;

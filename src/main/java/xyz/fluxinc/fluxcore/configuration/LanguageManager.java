@@ -40,15 +40,4 @@ public class LanguageManager<Plugin extends JavaPlugin> extends ConfigurationMan
         if (prefix == null || msg == null) { instance.getLogger().severe("Invalid Lang File, missing elements prefix or " + key); return ""; }
         return ChatColor.translateAlternateColorCodes('&', prefix + " " + msg);
     }
-
-    /**
-     * Returns a raw config key with colors, but no prefix
-     * @param key The key to return
-     * @return The semi-formatted string
-     */
-    public String getKey(String key) {
-        String msg = configuration.getString(key);
-        if (msg == null) { instance.getLogger().severe("Invalid Lang File, missing elements prefix or " + key); return ""; }
-        return ChatColor.translateAlternateColorCodes('&', msg);
-    }
 }

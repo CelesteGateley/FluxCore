@@ -10,6 +10,11 @@ import java.util.List;
 
 public class InventoryUtils {
 
+    /**
+     * Sort an inventory by item name and quantity
+     * @param inventory The inventory to sort
+     * @return The sorted inventory
+     */
     public static Inventory sortInventory(Inventory inventory) {
         Inventory sortedInventory = Bukkit.createInventory(null, inventory.getSize());
         List<ItemStack> items = Arrays.asList(inventory.getContents());

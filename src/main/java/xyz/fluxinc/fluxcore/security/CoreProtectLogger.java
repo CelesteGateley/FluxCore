@@ -6,6 +6,7 @@ import net.coreprotect.CoreProtectAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
 public class CoreProtectLogger {
@@ -31,6 +32,18 @@ public class CoreProtectLogger {
         CoreProtectAPI api = getCoreProtectAPI();
         if (api != null) {
             api.logPlacement(player.getName(), block.getLocation(), block.getType(), block.getBlockData());
+        }
+    }
+
+    /**
+     * Log a player interacting with a container
+     * @param player The player interacting with the container
+     * @param block The container
+     */
+    public static void logContainerInteraction(Player player, Block block) {
+        CoreProtectAPI api = getCoreProtectAPI();
+        if (api != null) {
+            api.logContainerTransaction(player.getName(), block.getLocation());
         }
     }
 

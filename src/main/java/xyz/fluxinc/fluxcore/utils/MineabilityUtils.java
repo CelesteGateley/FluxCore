@@ -10,7 +10,14 @@ import static org.bukkit.Material.*;
 
 public class MineabilityUtils {
 
+    /**
+     * A list of blocks that can be mined with a stone pickaxe
+     */
     public static List<Material> STONE_PICKAXE_BLOCKS;
+
+    /**
+     * A list of blocks that can be mined with an iron pickaxe
+     */
     public static List<Material> IRON_PICKAXE_BLOCKS;
 
     static {
@@ -32,6 +39,12 @@ public class MineabilityUtils {
         IRON_PICKAXE_BLOCKS.add(DIAMOND_BLOCK);
     }
 
+    /**
+     * Check to see if a specific tool can mine a block
+     * @param tool The tool to check
+     * @param block The block being mined
+     * @return Whether the block can be mined or not
+     */
     public static boolean verifyBlockMining(ItemStack tool, Material block) {
         Material toolType = tool.getType();
         if (STONE_PICKAXE_BLOCKS.contains(block)) {

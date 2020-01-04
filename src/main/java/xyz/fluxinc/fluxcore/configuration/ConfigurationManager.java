@@ -92,6 +92,7 @@ public class ConfigurationManager<Plugin extends JavaPlugin> {
     /**
      * Returns an object from the configuration
      * @param key The key to look-up
+     * @param <T> The type of object you're trying to get
      * @return The configuration value
      */
     public <T> T getGeneric(String key) { return (T) this.configuration.get(key); }

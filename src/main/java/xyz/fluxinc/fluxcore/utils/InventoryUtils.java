@@ -55,41 +55,4 @@ public class InventoryUtils {
         sortedInventory.setItem(slotId, items.get(0));
         return inventory;
     }
-
-    /**
-     * Removes durability from a tool
-     * @param player The player breaking the blocks
-     * @param tool The tool used to break the blocks
-     * @param blocksBroken The number of blocks broken with the tool
-     */
-    public static void takeDurability(Player player, ItemStack tool, int blocksBroken) {
-        Random random = new Random();
-        double chance = (100D / (getEnchantmentLevel(tool, Enchantment.DURABILITY) + 1));
-        ItemMeta iMeta = tool.getItemMeta();
-        if (iMeta instanceof Damageable) {
-            Damageable damageable = (Damageable) iMeta;
-            for (int i = 0; i < blocksBroken; i++) {
-                double rand = random.nextInt(99) + 1;
-                if (rand >= chance) { continue; }
-                damageable.setDamage(damageable.getDamage() + 1);
-                if (damageable.getDamage() > tool.getType().getMaxDurability()) {
-                    player.getInventory().remove(tool);
-                    return;
-                }
-            }
-            tool.setItemMeta((ItemMeta) damageable);
-        }
-    }
-
-    /**
-     * Gets the level of an enchantment on a tool
-     * @param tool The tool to check
-     * @param enchantment The enchantment to look for
-     * @return The level of the enchantment
-     */
-    public static int getEnchantmentLevel(ItemStack tool, Enchantment enchantment) {
-        ItemMeta itemMeta = tool.getItemMeta();
-        if (itemMeta == null) { return 0; }
-        return itemMeta.getEnchantLevel(enchantment);
-    }
 }

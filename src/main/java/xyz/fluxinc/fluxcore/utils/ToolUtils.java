@@ -49,6 +49,19 @@ public class ToolUtils {
     }
 
     /**
+     * Get how much durability a tool has left
+     * @param tool The tool to check
+     * @return The amount of durability remaining or 0 if undamageable
+     */
+    public static int getRemainingDurability(ItemStack tool) {
+        ItemMeta iMeta = tool.getItemMeta();
+        if (iMeta instanceof Damageable) {
+            return tool.getType().getMaxDurability() - ((Damageable) iMeta).getDamage();
+        }
+        return 0;
+    }
+
+    /**
      * Removes durability from a tool
      * @param player The player breaking the blocks
      * @param tool The tool used to break the blocks

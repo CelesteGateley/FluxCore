@@ -15,7 +15,8 @@ import java.util.Map;
 public class ConfigurationManager<Plugin extends JavaPlugin> {
 
     YamlConfiguration configuration;
-    String filename;
+    String fileName;
+    private File file;
     Plugin instance;
 
     /**
@@ -24,28 +25,51 @@ public class ConfigurationManager<Plugin extends JavaPlugin> {
      * @param configuration The name of the configuration file
      */
     public ConfigurationManager(Plugin instance, String configuration) {
-        this.filename = configuration;
+        this.fileName = configuration;
+        this.file = new File(instance.getDataFolder(), configuration);
         this.instance = instance;
         reloadConfiguration();
-    }
-
-    /**
-     * Copy any missing keys into the configuration file
-     */
-    public void verifyKeys() {
-        YamlConfiguration defaultConfig = YamlConfiguration.loadConfiguration(new InputStreamReader(instance.getResource(configuration.getName())));
-        for (Map.Entry<String, Object> entry : defaultConfig.getValues(true).entrySet()) {
-            configuration.addDefault(entry.getKey(), entry.getValue());
-        }
-        configuration.options().copyDefaults(true);
-        saveConfiguration();
     }
 
     /**
      * Returns the configuration file that is being managed
      * @return The configuration file
      */
-    public YamlConfiguration getConfig() { return this.configuration; }
+    public YamlConfiguration getConfiguration() { return configuration; }
+
+    /**
+     * Returns the name of the currently managed file
+     * @return The filename
+     */
+    public String getFileName() { return fileName; }
+
+    /**
+     * Changes the name of the file being modified, and updates internal variables
+     * @param fileName The new filename
+     */
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+        this.file = new File(instance.getDataFolder(), this.fileName);
+        reloadConfiguration();
+    }
+
+    /**
+     * Returns the file containing all of the
+     * @return
+     */
+    public File getFile() { return file; }
+
+    /**
+     * Copy any missing keys into the configuration file
+     */
+    public void verifyKeys() {
+        YamlConfiguration defaultConfig = YamlConfiguration.loadConfiguration(new InputStreamReader(instance.getResource(fileName)));
+        for (Map.Entry<String, Object> entry : defaultConfig.getValues(true).entrySet()) {
+            configuration.addDefault(entry.getKey(), entry.getValue());
+        }
+        configuration.options().copyDefaults(true);
+        saveConfiguration();
+    }
 
     /**
      * Returns a string from the configuration
@@ -110,7 +134,7 @@ public class ConfigurationManager<Plugin extends JavaPlugin> {
      * Save any changes to the file
      */
     public void saveConfiguration() {
-        try { configuration.save(new File(instance.getDataFolder(), filename)); }
+        try { configuration.save(file); }
         catch (IOException e) { e.printStackTrace(); }
     }
 
@@ -118,7 +142,7 @@ public class ConfigurationManager<Plugin extends JavaPlugin> {
      * Load any changes from the file
      */
     public void loadConfiguration() {
-        try { configuration.load(new File(instance.getDataFolder(), filename)); }
+        try { configuration.load(file); }
         catch (IOException | InvalidConfigurationException e) { e.printStackTrace(); }
     }
 
@@ -127,11 +151,10 @@ public class ConfigurationManager<Plugin extends JavaPlugin> {
      */
     public void reloadConfiguration() {
         YamlConfiguration config = new YamlConfiguration();
-        File configFile = new File(instance.getDataFolder(), filename);
-        if (!configFile.exists()) {
-            instance.saveResource(filename, false);
+        if (!file.exists()) {
+            instance.saveResource(fileName, false);
         }
-        try { config.load(configFile); }
+        try { config.load(file); }
         catch (InvalidConfigurationException | IOException e) { e.printStackTrace(); Bukkit.getPluginManager().disablePlugin(instance); }
         this.configuration = config;
     }

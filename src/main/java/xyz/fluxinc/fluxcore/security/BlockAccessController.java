@@ -80,8 +80,8 @@ public class BlockAccessController {
 
         boolean bypass = WorldGuard.getInstance().getPlatform().getSessionManager().hasBypass(wgdInst.getPlayer(), wgdInst.getPlayer().getWorld());
         if (bypass) { return true; }
-        if (breakBlock) { return rQuery.testBuild(wgdInst.getLocation(), wgdInst.getPlayer(), Flags.BLOCK_BREAK); }
-        else { return rQuery.testBuild(wgdInst.getLocation(), wgdInst.getPlayer(), Flags.BLOCK_PLACE); }
+        if (breakBlock) { return rQuery.testBuild(wgdInst.getLocation(), wgdInst.getPlayer(), Flags.PASSTHROUGH, Flags.BLOCK_BREAK); }
+        else { return rQuery.testBuild(wgdInst.getLocation(), wgdInst.getPlayer(), Flags.PASSTHROUGH, Flags.BLOCK_PLACE); }
     }
 
     private boolean worldGuardAccessQuery(Player p, Location loc) {
@@ -90,7 +90,7 @@ public class BlockAccessController {
 
         boolean bypass = WorldGuard.getInstance().getPlatform().getSessionManager().hasBypass(wgdInst.getPlayer(), wgdInst.getPlayer().getWorld());
         if (bypass) { return true; }
-        return rQuery.testState(wgdInst.getLocation(), wgdInst.getPlayer(), Flags.USE);
+        return rQuery.testState(wgdInst.getLocation(), wgdInst.getPlayer(), Flags.PASSTHROUGH, Flags.USE);
     }
 
     private boolean griefPreventionBuildQuery(Player p, Location loc) {
@@ -100,7 +100,7 @@ public class BlockAccessController {
 
     private boolean griefPreventionAccessQuery(Player p, Location loc) {
         Claim claim = griefPreventionCompat.dataStore.getClaimAt(loc, true, null);
-        return claim == null || claim.allowAccess(p) == null;
+        return claim == null || claim.allowContainers(p) == null;
     }
 
     /**

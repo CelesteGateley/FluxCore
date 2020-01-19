@@ -55,7 +55,7 @@ public class ConfigurationManager<Plugin extends JavaPlugin> {
 
     /**
      * Returns the file containing all of the
-     * @return
+     * @return The raw configuration file
      */
     public File getFile() { return file; }
 

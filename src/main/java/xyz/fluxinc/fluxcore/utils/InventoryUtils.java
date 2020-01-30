@@ -51,7 +51,7 @@ public class InventoryUtils {
                 items.remove(1);
             }
         }
-        sortedInventory.setItem(slotId, items.get(0));
+        if (items.size() != 0) { sortedInventory.setItem(slotId, items.get(0)); }
         return inventory;
     }
 }

@@ -1,57 +1,51 @@
 package xyz.fluxinc.fluxcore.utils;
 
-import org.bukkit.Bukkit;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.Damageable;
-import org.bukkit.inventory.meta.ItemMeta;
-import xyz.fluxinc.fluxcore.inventory.SortByName;
-
-import java.util.*;
 
 public class InventoryUtils {
 
     /**
      * Sort an inventory by item name and quantity
-     * @param inventory The inventory to sort
-     * @return The sorted inventory
+     * @param itemStacks The itemstacks to be sorted
+     * @return The sorted list
      */
-    public static Inventory sortInventory(Inventory inventory) {
-        Inventory sortedInventory = Bukkit.createInventory(null, inventory.getSize());
-        List<ItemStack> items = new ArrayList<>(Arrays.asList(inventory.getContents()));
-        while (items.remove(null)) {}
-        items.sort(new SortByName());
-        int slotId = 0;
-        while (items.size() > 1) {
-            if (items.get(0).getType() != items.get(1).getType() || items.get(0).getAmount() == items.get(0).getMaxStackSize()) {
-                sortedInventory.setItem(slotId, items.get(0));
-                items.remove(0);
-                slotId++;
-                continue;
-            }
-            int zeroAmount = items.get(0).getAmount();
-            int oneAmount = items.get(1).getAmount();
-            if (zeroAmount + oneAmount > items.get(0).getMaxStackSize()) {
-                int difference =  (zeroAmount + oneAmount) - items.get(0).getMaxStackSize();
-                items.get(0).setAmount(items.get(0).getMaxStackSize());
-                items.get(1).setAmount(difference);
-                sortedInventory.setItem(slotId, items.get(0));
-                items.remove(0);
-                slotId++;
-            } else if (zeroAmount + oneAmount == items.get(0).getMaxStackSize()) {
-                items.get(0).setAmount(zeroAmount + oneAmount);
-                items.remove(1);
-                sortedInventory.setItem(slotId, items.get(0));
-                items.remove(0);
-                slotId++;
-            } else {
-                items.get(0).setAmount(zeroAmount + oneAmount);
-                items.remove(1);
+    public static ItemStack[] sortItemStacks(ItemStack[] itemStacks) {
+        ItemStack[] newArr = new ItemStack[itemStacks.length];
+        for (ItemStack itemStack : itemStacks) {
+            if (itemStack == null) { continue; }
+            for (int i = 0; i < newArr.length; i++) {
+                if (newArr[i] == null) { newArr[i] = itemStack; break; }
+                if (compareItemStacks(newArr[i], itemStack)) {
+                    newArr = shiftByOne(newArr, i);
+                    newArr[i] = itemStack;
+                    break;
+                }
             }
         }
-        if (items.size() != 0) { sortedInventory.setItem(slotId, items.get(0)); }
-        return inventory;
+        return newArr;
+    }
+
+    /**
+     * Compares one itemstack to another
+     * @param stack The stack to use as reference
+     * @param comparator The stack to compare to
+     * @return Returns true if the reference is greater than the comparator, or false otherwise
+     */
+    public static boolean compareItemStacks(ItemStack stack, ItemStack comparator) {
+        return stack.toString().compareTo(comparator.toString()) > 0;
+    }
+
+    private static ItemStack[] shiftByOne(ItemStack[] itemStacks, int position) {
+        int found = -1;
+        for (int i = position+1; i < itemStacks.length; i++) {
+            if (itemStacks[i] == null) { found = i; break; }
+        }
+        if (found != -1) {
+            if (found - position >= 0) {
+                System.arraycopy(itemStacks, position, itemStacks, position + 1, found - position);
+            }
+            itemStacks[position] = null;
+        }
+        return itemStacks;
     }
 }

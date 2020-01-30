@@ -9,9 +9,7 @@ import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import xyz.fluxinc.fluxcore.inventory.SortByName;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class InventoryUtils {
 
@@ -22,7 +20,8 @@ public class InventoryUtils {
      */
     public static Inventory sortInventory(Inventory inventory) {
         Inventory sortedInventory = Bukkit.createInventory(null, inventory.getSize());
-        List<ItemStack> items = Arrays.asList(inventory.getContents());
+        List<ItemStack> items = new ArrayList<>(Arrays.asList(inventory.getContents()));
+        while (items.remove(null)) {}
         items.sort(new SortByName());
         int slotId = 0;
         while (items.size() > 1) {

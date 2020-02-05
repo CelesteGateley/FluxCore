@@ -1,7 +1,6 @@
 package xyz.fluxinc.fluxcore.configuration;
 
 import org.bukkit.ChatColor;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Map;

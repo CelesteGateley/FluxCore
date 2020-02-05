@@ -2,11 +2,9 @@ package xyz.fluxinc.fluxcore;
 
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import me.ryanhamshire.GriefPrevention.GriefPrevention;
-import net.coreprotect.CoreProtectAPI;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.fluxinc.fluxcore.configuration.LanguageManager;
 import xyz.fluxinc.fluxcore.security.BlockAccessController;
-import xyz.fluxinc.fluxcore.security.CoreProtectLogger;
 
 public final class FluxCore extends JavaPlugin {
 

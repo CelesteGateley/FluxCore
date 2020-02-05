@@ -1,6 +1,10 @@
 package xyz.fluxinc.fluxcore.utils;
 
+import org.bukkit.Bukkit;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.List;
 
 public class InventoryUtils {
 
@@ -47,5 +51,170 @@ public class InventoryUtils {
             itemStacks[position] = null;
         }
         return itemStacks;
+    }
+
+    /**
+     * Distributes items inside a new inventory
+     * @param inventoryName The name for the inventory
+     * @param items The items to be distributed
+     * @return The new inventory
+     */
+    public static Inventory generateDistributedInventory(String inventoryName, List<ItemStack> items) {
+        Inventory inventory;
+        switch (items.size()) {
+            case 1:
+                inventory = Bukkit.createInventory(null, 9, inventoryName);
+                inventory.setItem(4, items.get(0));
+                return inventory;
+            case 2:
+                inventory = Bukkit.createInventory(null, 9, inventoryName);
+                inventory.setItem(2, items.get(0));
+                inventory.setItem(6, items.get(1));
+                return inventory;
+            case 3:
+                inventory = Bukkit.createInventory(null, 9, inventoryName);
+                inventory.setItem(1, items.get(0));
+                inventory.setItem(4, items.get(1));
+                inventory.setItem(7, items.get(2));
+                return inventory;
+            case 4:
+                inventory = Bukkit.createInventory(null, 9, inventoryName);
+                inventory.setItem(1, items.get(0));
+                inventory.setItem(3, items.get(1));
+                inventory.setItem(5, items.get(2));
+                inventory.setItem(7, items.get(3));
+                return inventory;
+            case 5:
+                inventory = Bukkit.createInventory(null, 9, inventoryName);
+                inventory.setItem(0, items.get(0));
+                inventory.setItem(2, items.get(1));
+                inventory.setItem(4, items.get(2));
+                inventory.setItem(6, items.get(3));
+                inventory.setItem(8, items.get(4));
+                return inventory;
+            case 6:
+                inventory = Bukkit.createInventory(null, 18, inventoryName);
+                inventory.setItem(1, items.get(0));
+                inventory.setItem(3, items.get(1));
+                inventory.setItem(5, items.get(2));
+                inventory.setItem(7, items.get(3));
+                inventory.setItem(11, items.get(4));
+                inventory.setItem(15, items.get(5));
+                return inventory;
+            case 7:
+                inventory = Bukkit.createInventory(null, 18, inventoryName);
+                inventory.setItem(1, items.get(0));
+                inventory.setItem(3, items.get(1));
+                inventory.setItem(5, items.get(2));
+                inventory.setItem(7, items.get(3));
+                inventory.setItem(11, items.get(4));
+                inventory.setItem(13, items.get(5));
+                inventory.setItem(15, items.get(6));
+                return inventory;
+            case 8:
+                inventory = Bukkit.createInventory(null, 9, inventoryName);
+                inventory.setItem(0, items.get(0));
+                inventory.setItem(2, items.get(1));
+                inventory.setItem(4, items.get(2));
+                inventory.setItem(6, items.get(3));
+                inventory.setItem(8, items.get(4));
+                inventory.setItem(10, items.get(5));
+                inventory.setItem(13, items.get(6));
+                inventory.setItem(16, items.get(7));
+                return inventory;
+            case 9:
+                inventory = Bukkit.createInventory(null, 9, inventoryName);
+                inventory.setItem(0, items.get(0));
+                inventory.setItem(2, items.get(1));
+                inventory.setItem(4, items.get(2));
+                inventory.setItem(6, items.get(3));
+                inventory.setItem(8, items.get(4));
+                inventory.setItem(10, items.get(5));
+                inventory.setItem(12, items.get(6));
+                inventory.setItem(14, items.get(7));
+                inventory.setItem(16, items.get(8));
+                return inventory;
+            case 10:
+                inventory = Bukkit.createInventory(null, 9, inventoryName);
+                inventory.setItem(0, items.get(0));
+                inventory.setItem(2, items.get(1));
+                inventory.setItem(4, items.get(2));
+                inventory.setItem(6, items.get(3));
+                inventory.setItem(8, items.get(4));
+                inventory.setItem(10, items.get(5));
+                inventory.setItem(12, items.get(6));
+                inventory.setItem(14, items.get(7));
+                inventory.setItem(16, items.get(8));
+                inventory.setItem(22, items.get(9));
+                return inventory;
+            case 11:
+                inventory = Bukkit.createInventory(null, 9, inventoryName);
+                inventory.setItem(0, items.get(0));
+                inventory.setItem(2, items.get(1));
+                inventory.setItem(4, items.get(2));
+                inventory.setItem(6, items.get(3));
+                inventory.setItem(8, items.get(4));
+                inventory.setItem(10, items.get(5));
+                inventory.setItem(12, items.get(6));
+                inventory.setItem(14, items.get(7));
+                inventory.setItem(16, items.get(8));
+                inventory.setItem(20, items.get(9));
+                inventory.setItem(24, items.get(10));
+                return inventory;
+            case 12:
+                inventory = Bukkit.createInventory(null, 9, inventoryName);
+                inventory.setItem(0, items.get(0));
+                inventory.setItem(2, items.get(1));
+                inventory.setItem(4, items.get(2));
+                inventory.setItem(6, items.get(3));
+                inventory.setItem(8, items.get(4));
+                inventory.setItem(10, items.get(5));
+                inventory.setItem(12, items.get(6));
+                inventory.setItem(14, items.get(7));
+                inventory.setItem(16, items.get(8));
+                inventory.setItem(20, items.get(9));
+                inventory.setItem(22, items.get(10));
+                inventory.setItem(24, items.get(11));
+                return inventory;
+            case 13:
+                inventory = Bukkit.createInventory(null, 9, inventoryName);
+                inventory.setItem(0, items.get(0));
+                inventory.setItem(2, items.get(1));
+                inventory.setItem(4, items.get(2));
+                inventory.setItem(6, items.get(3));
+                inventory.setItem(8, items.get(4));
+                inventory.setItem(10, items.get(5));
+                inventory.setItem(13, items.get(6));
+                inventory.setItem(16, items.get(7));
+                inventory.setItem(18, items.get(8));
+                inventory.setItem(20, items.get(9));
+                inventory.setItem(22, items.get(10));
+                inventory.setItem(24, items.get(11));
+                inventory.setItem(26, items.get(12));
+                return inventory;
+            case 14:
+                inventory = Bukkit.createInventory(null, 9, inventoryName);
+                inventory.setItem(0, items.get(0));
+                inventory.setItem(2, items.get(1));
+                inventory.setItem(4, items.get(2));
+                inventory.setItem(6, items.get(3));
+                inventory.setItem(8, items.get(4));
+                inventory.setItem(10, items.get(5));
+                inventory.setItem(12, items.get(6));
+                inventory.setItem(14, items.get(7));
+                inventory.setItem(16, items.get(8));
+                inventory.setItem(18, items.get(9));
+                inventory.setItem(20, items.get(10));
+                inventory.setItem(22, items.get(11));
+                inventory.setItem(24, items.get(12));
+                inventory.setItem(26, items.get(13));
+                return inventory;
+            default:
+                inventory = Bukkit.createInventory(null, items.size(), inventoryName);
+                for (int x = 0; x < items.size(); x++) {
+                    inventory.setItem(x, items.get(x));
+                }
+                return inventory;
+        }
     }
 }

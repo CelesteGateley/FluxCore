@@ -112,7 +112,7 @@ public class InventoryUtils {
                 inventory.setItem(15, items.get(6));
                 return inventory;
             case 8:
-                inventory = Bukkit.createInventory(null, 9, inventoryName);
+                inventory = Bukkit.createInventory(null, 18, inventoryName);
                 inventory.setItem(0, items.get(0));
                 inventory.setItem(2, items.get(1));
                 inventory.setItem(4, items.get(2));
@@ -123,7 +123,7 @@ public class InventoryUtils {
                 inventory.setItem(16, items.get(7));
                 return inventory;
             case 9:
-                inventory = Bukkit.createInventory(null, 9, inventoryName);
+                inventory = Bukkit.createInventory(null, 18, inventoryName);
                 inventory.setItem(0, items.get(0));
                 inventory.setItem(2, items.get(1));
                 inventory.setItem(4, items.get(2));
@@ -135,7 +135,7 @@ public class InventoryUtils {
                 inventory.setItem(16, items.get(8));
                 return inventory;
             case 10:
-                inventory = Bukkit.createInventory(null, 9, inventoryName);
+                inventory = Bukkit.createInventory(null, 27, inventoryName);
                 inventory.setItem(0, items.get(0));
                 inventory.setItem(2, items.get(1));
                 inventory.setItem(4, items.get(2));
@@ -148,7 +148,7 @@ public class InventoryUtils {
                 inventory.setItem(22, items.get(9));
                 return inventory;
             case 11:
-                inventory = Bukkit.createInventory(null, 9, inventoryName);
+                inventory = Bukkit.createInventory(null, 27, inventoryName);
                 inventory.setItem(0, items.get(0));
                 inventory.setItem(2, items.get(1));
                 inventory.setItem(4, items.get(2));
@@ -162,7 +162,7 @@ public class InventoryUtils {
                 inventory.setItem(24, items.get(10));
                 return inventory;
             case 12:
-                inventory = Bukkit.createInventory(null, 9, inventoryName);
+                inventory = Bukkit.createInventory(null, 27, inventoryName);
                 inventory.setItem(0, items.get(0));
                 inventory.setItem(2, items.get(1));
                 inventory.setItem(4, items.get(2));
@@ -177,7 +177,7 @@ public class InventoryUtils {
                 inventory.setItem(24, items.get(11));
                 return inventory;
             case 13:
-                inventory = Bukkit.createInventory(null, 9, inventoryName);
+                inventory = Bukkit.createInventory(null, 27, inventoryName);
                 inventory.setItem(0, items.get(0));
                 inventory.setItem(2, items.get(1));
                 inventory.setItem(4, items.get(2));
@@ -193,7 +193,7 @@ public class InventoryUtils {
                 inventory.setItem(26, items.get(12));
                 return inventory;
             case 14:
-                inventory = Bukkit.createInventory(null, 9, inventoryName);
+                inventory = Bukkit.createInventory(null, 27, inventoryName);
                 inventory.setItem(0, items.get(0));
                 inventory.setItem(2, items.get(1));
                 inventory.setItem(4, items.get(2));

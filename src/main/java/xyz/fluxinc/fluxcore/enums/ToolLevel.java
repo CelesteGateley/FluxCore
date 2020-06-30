@@ -6,7 +6,8 @@ public enum ToolLevel {
     STONE,
     IRON,
     GOLD,
-    DIAMOND;
+    DIAMOND,
+    NETHERITE;
 
     public static String getName(ToolLevel level) {
         switch (level) {
@@ -20,6 +21,8 @@ public enum ToolLevel {
                 return "Gold";
             case DIAMOND:
                 return "Diamond";
+            case NETHERITE:
+                return "Netherite";
             default:
                 return "";
         }

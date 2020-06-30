@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static org.bukkit.Material.*;
+
 public class ToolUtils {
 
     public static List<Material> pickaxes;
@@ -20,32 +22,36 @@ public class ToolUtils {
 
     static {
         pickaxes = new ArrayList<>();
-        pickaxes.add(Material.WOODEN_PICKAXE);
-        pickaxes.add(Material.STONE_PICKAXE);
-        pickaxes.add(Material.IRON_PICKAXE);
-        pickaxes.add(Material.GOLDEN_PICKAXE);
-        pickaxes.add(Material.DIAMOND_PICKAXE);
+        pickaxes.add(WOODEN_PICKAXE);
+        pickaxes.add(STONE_PICKAXE);
+        pickaxes.add(IRON_PICKAXE);
+        pickaxes.add(GOLDEN_PICKAXE);
+        pickaxes.add(DIAMOND_PICKAXE);
+        pickaxes.add(NETHERITE_PICKAXE);
 
         axes = new ArrayList<>();
-        axes.add(Material.WOODEN_AXE);
-        axes.add(Material.STONE_AXE);
-        axes.add(Material.IRON_AXE);
-        axes.add(Material.GOLDEN_AXE);
-        axes.add(Material.DIAMOND_AXE);
+        axes.add(WOODEN_AXE);
+        axes.add(STONE_AXE);
+        axes.add(IRON_AXE);
+        axes.add(GOLDEN_AXE);
+        axes.add(DIAMOND_AXE);
+        axes.add(NETHERITE_AXE);
 
         shovels = new ArrayList<>();
-        shovels.add(Material.WOODEN_SHOVEL);
-        shovels.add(Material.STONE_SHOVEL);
-        shovels.add(Material.IRON_SHOVEL);
-        shovels.add(Material.GOLDEN_SHOVEL);
-        shovels.add(Material.DIAMOND_SHOVEL);
+        shovels.add(WOODEN_SHOVEL);
+        shovels.add(STONE_SHOVEL);
+        shovels.add(IRON_SHOVEL);
+        shovels.add(GOLDEN_SHOVEL);
+        shovels.add(DIAMOND_SHOVEL);
+        shovels.add(NETHERITE_SHOVEL);
 
         hoes = new ArrayList<>();
-        hoes.add(Material.WOODEN_HOE);
-        hoes.add(Material.STONE_HOE);
-        hoes.add(Material.IRON_HOE);
-        hoes.add(Material.GOLDEN_HOE);
-        hoes.add(Material.DIAMOND_HOE);
+        hoes.add(WOODEN_HOE);
+        hoes.add(STONE_HOE);
+        hoes.add(IRON_HOE);
+        hoes.add(GOLDEN_HOE);
+        hoes.add(DIAMOND_HOE);
+        hoes.add(NETHERITE_HOE);
     }
 
     /**

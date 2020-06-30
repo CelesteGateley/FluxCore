@@ -40,7 +40,7 @@
                 <version>3.1.1</version>
                 <configuration>
                     <javadocVersion>1.8</javadocVersion>
-                    <javadocExecutable>C:\Program Files\Java\jdk1.8.0_231\bin\javadoc.exe</javadocExecutable>
+                    <javadocExecutable>/home/celeste/.sdkman/candidates/java/current/bin/javadoc</javadocExecutable>
                 </configuration>
                 <executions>
                     <execution>

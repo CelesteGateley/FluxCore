@@ -31,6 +31,7 @@ public class MineabilityUtils {
 
         IRON_PICKAXE_BLOCKS = new ArrayList<>();
         IRON_PICKAXE_BLOCKS.add(DIAMOND_ORE);
+        IRON_PICKAXE_BLOCKS.add(NETHER_GOLD_ORE);
         IRON_PICKAXE_BLOCKS.add(GOLD_ORE);
         IRON_PICKAXE_BLOCKS.add(REDSTONE_ORE);
         IRON_PICKAXE_BLOCKS.add(EMERALD_ORE);
@@ -48,11 +49,11 @@ public class MineabilityUtils {
     public static boolean verifyBlockMining(ItemStack tool, Material block) {
         Material toolType = tool.getType();
         if (STONE_PICKAXE_BLOCKS.contains(block)) {
-            return toolType == Material.STONE_PICKAXE || toolType == Material.IRON_PICKAXE || toolType == Material.DIAMOND_PICKAXE;
+            return toolType == Material.STONE_PICKAXE || toolType == Material.IRON_PICKAXE || toolType == Material.DIAMOND_PICKAXE || toolType == NETHERITE_PICKAXE;
         } else if (IRON_PICKAXE_BLOCKS.contains(block)) {
-            return toolType == Material.IRON_PICKAXE || toolType == Material.DIAMOND_PICKAXE;
-        } else if (block == Material.OBSIDIAN) {
-            return toolType == Material.DIAMOND_PICKAXE;
+            return toolType == Material.IRON_PICKAXE || toolType == Material.DIAMOND_PICKAXE || toolType == NETHERITE_PICKAXE;
+        } else if (block == Material.OBSIDIAN || block == ANCIENT_DEBRIS) {
+            return toolType == Material.DIAMOND_PICKAXE || toolType == NETHERITE_PICKAXE;
         }
         return true;
     }

@@ -20,7 +20,11 @@ public class LoreUtils {
         ItemMeta iMeta = item.getItemMeta();
         List<String> currentLore = Objects.requireNonNull(iMeta).getLore();
         if (currentLore == null) { currentLore = new ArrayList<>(); }
-        currentLore.add(lore);
+        if (lore.length() < 50) {
+            currentLore.add(lore);
+        } else {
+            currentLore.addAll(splitString(lore));
+        }
         iMeta.setLore(currentLore);
         item.setItemMeta(iMeta);
         return item;
@@ -70,5 +74,25 @@ public class LoreUtils {
         if (iMeta == null) { return false; }
         List<String> lore = iMeta.getLore();
         return lore != null && hasInvisibleLore(lore, requestedString);
+    }
+
+    private static List<String> splitString(String string) {
+        List<String> strings = new ArrayList<>();
+        int splitCount = 50;
+        StringBuilder current = new StringBuilder();
+        for (int i = 0; i < string.length(); i++) {
+            char character = string.charAt(i);
+            if (character == ' ' && i >= splitCount) {
+                splitCount += 50;
+                strings.add(current.toString());
+                current = new StringBuilder();
+            } else {
+                current.append(character);
+            }
+        }
+        if (!current.toString().equals("")) {
+            strings.add(current.toString());
+        }
+        return strings;
     }
 }

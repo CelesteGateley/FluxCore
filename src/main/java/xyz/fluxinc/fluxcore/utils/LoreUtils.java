@@ -10,6 +10,8 @@ import java.util.Objects;
 
 public class LoreUtils {
 
+    private static int SPLIT_RATE = 40;
+
     /**
      * Appends a string to the end of an items lore
      * @param item The item that you want to add the line to
@@ -20,7 +22,7 @@ public class LoreUtils {
         ItemMeta iMeta = item.getItemMeta();
         List<String> currentLore = Objects.requireNonNull(iMeta).getLore();
         if (currentLore == null) { currentLore = new ArrayList<>(); }
-        if (lore.length() < 50) {
+        if (lore.length() < SPLIT_RATE) {
             currentLore.add(lore);
         } else {
             currentLore.addAll(splitString(lore));
@@ -78,12 +80,12 @@ public class LoreUtils {
 
     private static List<String> splitString(String string) {
         List<String> strings = new ArrayList<>();
-        int splitCount = 50;
+        int splitCount = SPLIT_RATE;
         StringBuilder current = new StringBuilder();
         for (int i = 0; i < string.length(); i++) {
             char character = string.charAt(i);
             if (character == ' ' && i >= splitCount) {
-                splitCount += 50;
+                splitCount += SPLIT_RATE;
                 strings.add(current.toString());
                 current = new StringBuilder();
             } else {

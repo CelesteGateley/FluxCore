@@ -82,12 +82,44 @@ public class LoreUtils {
         List<String> strings = new ArrayList<>();
         int splitCount = SPLIT_RATE;
         StringBuilder current = new StringBuilder();
+        String colorCode = "";
         for (int i = 0; i < string.length(); i++) {
             char character = string.charAt(i);
+            if (character == '&') {
+                i++;
+                character = string.charAt(i);
+                switch (character) {
+                    case '0':
+                    case '1':
+                    case '2':
+                    case '3':
+                    case '4':
+                    case '5':
+                    case '6':
+                    case '7':
+                    case '8':
+                    case '9':
+                    case 'a':
+                    case 'b':
+                    case 'c':
+                    case 'd':
+                    case 'e':
+                    case 'f':
+                    case 'k':
+                    case 'l':
+                    case 'm':
+                    case 'n':
+                    case 'o':
+                    case 'r':
+                        colorCode = "&" + character;
+                        continue;
+                }
+            }
             if (character == ' ' && i >= splitCount) {
                 splitCount += SPLIT_RATE;
                 strings.add(current.toString());
                 current = new StringBuilder();
+                current.append(colorCode);
             } else {
                 current.append(character);
             }

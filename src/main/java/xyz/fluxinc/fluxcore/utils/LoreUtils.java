@@ -85,7 +85,7 @@ public class LoreUtils {
         String colorCode = "";
         for (int i = 0; i < string.length(); i++) {
             char character = string.charAt(i);
-            if (character == '&') {
+            if (character == '\u00A7') {
                 i++;
                 character = string.charAt(i);
                 switch (character) {
@@ -111,7 +111,8 @@ public class LoreUtils {
                     case 'n':
                     case 'o':
                     case 'r':
-                        colorCode = "&" + character;
+                        colorCode = "\u00A7" + character;
+                        current.append(colorCode);
                         continue;
                 }
             }

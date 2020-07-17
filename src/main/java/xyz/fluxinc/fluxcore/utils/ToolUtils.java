@@ -9,6 +9,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import static org.bukkit.Material.*;
@@ -102,5 +103,16 @@ public class ToolUtils {
         ItemMeta itemMeta = tool.getItemMeta();
         if (itemMeta == null) { return 0; }
         return itemMeta.getEnchantLevel(enchantment);
+    }
+
+    /**
+     *  Transfers enchantments from one tool to another
+     * @param source The original tool with enchantments
+     * @param destination The tool to be enchanted
+     * @return The destination with the enchantments added
+     */
+    public static ItemStack transferEnchantments (ItemStack source, ItemStack destination){
+        destination.addEnchantments(source.getEnchantments());
+        return destination;
     }
 }

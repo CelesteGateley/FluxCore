@@ -116,7 +116,7 @@ public class LoreUtils {
                         continue;
                 }
             }
-            if (character == ' ' && i >= splitCount) {
+            if (character == '\n' || (character == ' ' && i >= splitCount)) {
                 splitCount += SPLIT_RATE;
                 strings.add(current.toString());
                 current = new StringBuilder();

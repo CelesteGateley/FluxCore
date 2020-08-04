@@ -80,7 +80,6 @@ public class LoreUtils {
 
     private static List<String> splitString(String string) {
         List<String> strings = new ArrayList<>();
-        int splitCount = SPLIT_RATE;
         StringBuilder current = new StringBuilder();
         String colorCode = "";
         int currLine = 0;
@@ -117,8 +116,12 @@ public class LoreUtils {
                         continue;
                 }
             }
-            if (character == '\n' || (character == ' ' && i >= splitCount)) {
-                splitCount += currLine;
+            if (character == '\n') {
+                strings.add(current.toString());
+                current = new StringBuilder();
+                current.append(colorCode);
+                currLine = 0;
+            } else if(character == ' ' && currLine >= SPLIT_RATE) {
                 currLine = 0;
                 strings.add(current.toString());
                 current = new StringBuilder();

@@ -83,6 +83,7 @@ public class LoreUtils {
         int splitCount = SPLIT_RATE;
         StringBuilder current = new StringBuilder();
         String colorCode = "";
+        int currLine = 0;
         for (int i = 0; i < string.length(); i++) {
             char character = string.charAt(i);
             if (character == '\u00A7') {
@@ -117,11 +118,13 @@ public class LoreUtils {
                 }
             }
             if (character == '\n' || (character == ' ' && i >= splitCount)) {
-                splitCount += SPLIT_RATE;
+                splitCount += currLine;
+                currLine = 0;
                 strings.add(current.toString());
                 current = new StringBuilder();
                 current.append(colorCode);
             } else {
+                currLine++;
                 current.append(character);
             }
         }

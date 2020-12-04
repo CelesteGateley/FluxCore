@@ -14,6 +14,10 @@ public class McMMOHook {
 
     private static mcMMO plugin;
 
+    /**
+     * Registers the mcMMO Plugin
+     * @param mcMMO the instance of McMMO
+     */
     public static void registerMcMMO(Plugin mcMMO) {
         plugin = (com.gmail.nossr50.mcMMO) mcMMO;
     }

@@ -16,10 +16,19 @@ public class JobsRebornHook {
 
     private static Jobs plugin;
 
+    /**
+     * Registers the Jobs Plugin
+     * @param jobs The instance of the jobs plugin
+     */
     public static void registerJobs(Jobs jobs) {
         plugin = jobs;
     }
 
+    /**
+     * Add jobs experience and money for block states
+     * @param blocks a list of block states
+     * @param player player to adjust
+     */
     public static void addExperienceForBlocks(List<BlockState> blocks, Player player) {
         if (plugin == null) return;
         for (BlockState blockState : blocks) {

@@ -1,12 +1,9 @@
 package xyz.fluxinc.fluxcore.hooks;
 
-import com.gamingmesh.jobs.CMILib.CMIMaterial;
 import com.gamingmesh.jobs.Jobs;
 import com.gamingmesh.jobs.actions.BlockActionInfo;
 import com.gamingmesh.jobs.container.ActionType;
-import com.gamingmesh.jobs.container.JobsPlayer;
-import org.bukkit.Material;
-import org.bukkit.block.BlockFace;
+import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.Player;
 
@@ -25,6 +22,12 @@ public class JobsRebornHook {
     }
 
     /**
+     * Check if Jobs is registered as a hook
+     * @return The status of JobsReborn
+     */
+    public static boolean isJobsRegistered() { return plugin != null; }
+
+    /**
      * Add jobs experience and money for block states
      * @param blocks a list of block states
      * @param player player to adjust
@@ -32,17 +35,30 @@ public class JobsRebornHook {
     public static void addExperienceForBlocks(List<BlockState> blocks, Player player) {
         if (plugin == null) return;
         for (BlockState blockState : blocks) {
-            /* Copyright (C) 2011 Zak Ford <zak.j.ford@gmail.com> */
-            Material brokenBlock = blockState.getBlock().getRelative(BlockFace.DOWN).getType();
-            if (Jobs.getGCManager().preventCropResizePayment && (brokenBlock == CMIMaterial.SUGAR_CANE.getMaterial()
-                    || brokenBlock == CMIMaterial.KELP.getMaterial()
-                    || brokenBlock == CMIMaterial.CACTUS.getMaterial() || brokenBlock == CMIMaterial.BAMBOO.getMaterial())) {
-                return;
-            }
-            /* END COPYRIGHT*/
-
             BlockActionInfo bInfo = new BlockActionInfo(blockState.getBlock(), ActionType.BREAK);
             Jobs.action(Jobs.getPlayerManager().getJobsPlayer(player), bInfo, blockState.getBlock());
         }
+    }
+
+    /**
+     * Add jobs experience for a single placed block
+     * @param block The block being placed
+     * @param player The player placing the block
+     */
+    public static void addExperienceForBlockPlace(Block block, Player player) {
+        if (plugin == null) return;
+
+        Jobs.action(Jobs.getPlayerManager().getJobsPlayer(player), new BlockActionInfo(block, ActionType.PLACE), block);
+    }
+
+    /**
+     * Add jobs experience for a single broken block
+     * @param block The block being broken
+     * @param player The player placing the block
+     */
+    public static void addExperienceForBlockBreak(Block block, Player player) {
+        if (plugin == null) { return; }
+
+        Jobs.action(Jobs.getPlayerManager().getJobsPlayer(player), new BlockActionInfo(block, ActionType.BREAK), block);
     }
 }

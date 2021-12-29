@@ -21,9 +21,26 @@ public class McMMOHook {
     public static void registerMcMMO(Plugin mcMMO) {
         plugin = (com.gmail.nossr50.mcMMO) mcMMO;
     }
+
+    /**
+     * Add experience for a list of blocks
+     * @param blocks List of blocks to be processed
+     * @param player Player to gain experience
+     */
     public static void addBlockExperience(ArrayList<BlockState> blocks, Player player) {
         if (plugin != null) {
             ExperienceAPI.addXpFromBlocks(blocks, UserManager.getPlayer(player));
+        }
+    }
+
+    /**
+     * Add experience for a single block
+     * @param block Block to be processed
+     * @param player Player to gain experience
+     */
+    public static void addBlockExperience(BlockState block, Player player) {
+        if (plugin != null) {
+            ExperienceAPI.addXpFromBlock(block, UserManager.getPlayer(player));
         }
     }
 }

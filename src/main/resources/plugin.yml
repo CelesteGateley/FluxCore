@@ -3,7 +3,7 @@ version: ${full.project.version}
 main: xyz.fluxinc.fluxcore.FluxCore
 api-version: 1.13
 prefix: FluxCore
-softdepend: [GriefPrevention, WorldGuard, CoreProtect]
+softdepend: [GriefPrevention, WorldGuard, CoreProtect, mcMMO, Jobs]
 authors: [CelesteMagisteel]
 description: A core plugin for all plugins developed for/by FluxInc
 website: https://fluxinc/xyz

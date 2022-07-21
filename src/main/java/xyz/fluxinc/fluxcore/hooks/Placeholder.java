@@ -39,4 +39,9 @@ public abstract class Placeholder extends PlaceholderExpansion {
     public String onPlaceholderRequest(Player player, String identifier) { return this.placeholder(player, identifier); }
 
     public abstract String placeholder(Player player, String identifier);
+
+    @Override
+    public boolean register() {
+        return super.register();
+    }
 }

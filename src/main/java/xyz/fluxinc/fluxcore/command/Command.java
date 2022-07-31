@@ -102,6 +102,11 @@ public class Command {
         return this;
     }
 
+    public Command raw(Argument argument) {
+        arguments.add(argument);
+        return this;
+    }
+
     public Command executor(CommandExecutor executor) {
         this.executor = executor;
         return this;

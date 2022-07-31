@@ -67,6 +67,11 @@ public class Command {
         return this;
     }
 
+    public Command string(String name, String[] suggestions) {
+        arguments.add(new StringArgument(name).replaceSuggestions(ArgumentSuggestions.strings(str -> suggestions)));
+        return this;
+    }
+
     public Command integer(String name) {
         arguments.add(new IntegerArgument(name));
         return this;
@@ -103,7 +108,10 @@ public class Command {
     }
 
     public void register() {
-        CommandAPICommand command = new CommandAPICommand(name).withAliases(aliases);
+        CommandAPICommand command = new CommandAPICommand(name);
+        if (this.aliases != null && this.aliases.length > 0) {
+            command.withAliases(aliases);
+        }
         for (Argument argument : arguments) { command.withArguments(argument); }
         command.executes(executor);
         command.register();

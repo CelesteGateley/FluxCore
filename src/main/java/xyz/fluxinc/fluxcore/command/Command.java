@@ -31,34 +31,34 @@ public class Command {
     }
 
     public Command list(String name,  String[] list) {
-        ListArgument<String> argument = new ListArgumentBuilder<String>(name).withList(List.of(list)).withStringMapper().build();
+        ListArgument<String> argument = new ListArgumentBuilder<String>(name).withList(List.of(list)).withStringMapper().buildGreedy();
         arguments.add(argument);
         return this;
     }
 
     public Command list(String name, List<String> list) {
-        ListArgument<String> argument = new ListArgumentBuilder<String>(name).withList(list).withStringMapper().build();
+        ListArgument<String> argument = new ListArgumentBuilder<String>(name).withList(list).withStringMapper().buildGreedy();
         arguments.add(argument);
         return this;
     }
     
     public Command player(String name) {
-        arguments.add(new EntitySelectorArgument(name, EntitySelector.ONE_PLAYER));
+        arguments.add(new EntitySelectorArgument.OnePlayer(name));
         return this;
     }
     
     public Command players(String name) {
-        arguments.add(new EntitySelectorArgument(name, EntitySelector.MANY_PLAYERS));
+        arguments.add(new EntitySelectorArgument.ManyPlayers(name));
         return this;
     }
     
     public Command entity(String name) {
-        arguments.add(new EntitySelectorArgument(name, EntitySelector.ONE_ENTITY));
+        arguments.add(new EntitySelectorArgument.OneEntity(name));
         return this;
     }
     
     public Command entities(String name) {
-        arguments.add(new EntitySelectorArgument(name, EntitySelector.MANY_ENTITIES));
+        arguments.add(new EntitySelectorArgument.ManyEntities(name));
         return this;
     }
 
